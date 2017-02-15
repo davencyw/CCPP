@@ -1,5 +1,15 @@
-/*
+ /*
+ *
  *	DLP friendly vector class for aligned memory and SOA memory layouts
+ *  ___________________________________________________________
+ *
+ *  Part of:
+ *  Common CPP Library 
+ *  Common c++ library for everyday use. Always in development.
+ *
+ *  author: david schmidig [david@davencyw.net]
+ *          Msc CSE ETH Zurich
+ *
  *
  */
 

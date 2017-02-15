@@ -1,3 +1,17 @@
+/*
+ *
+ *	Timer class for easy access.
+ *  ___________________________________________________________
+ *
+ *	Part of:
+ *	Common CPP Library 
+ *	Common c++ library for everyday use. Always in development.
+ *
+ *	author: david schmidig [david@davencyw.net]
+ *			Msc CSE ETH Zurich
+ *
+ *
+ */
 
 #ifndef __CCPP_TIMER__
 #define __CCPP_TIMER__

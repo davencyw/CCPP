@@ -1,10 +1,14 @@
 /*
  *
- *	Common CPP Library 
- *		Common c++ library for everyday use. Always in development.
+ *  DESCRIPTION
+ *  ___________________________________________________________
  *
- *	author: david schmidig [david@davencyw.net]
- *			Msc CSE ETH Zurich
+ *  Part of:
+ *  Common CPP Library 
+ *  Common c++ library for everyday use. Always in development.
+ *
+ *  author: david schmidig [david@davencyw.net]
+ *          Msc CSE ETH Zurich
  *
  *
  */

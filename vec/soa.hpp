@@ -1,9 +1,18 @@
 /*
+ *
  * SOA class for DLP friendly use. 
  * Uses intel SIMD intrinsics for SOA and SOA - SOA operations.
+ *  ___________________________________________________________
+ *
+ *  Part of:
+ *  Common CPP Library 
+ *  Common c++ library for everyday use. Always in development.
+ *
+ *  author: david schmidig [david@davencyw.net]
+ *          Msc CSE ETH Zurich
+ *
  *
  */
-
 
 #ifndef __CCPP_SOA__
 #define __CCPP_SOA__
