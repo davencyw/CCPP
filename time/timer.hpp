@@ -38,6 +38,13 @@ private:
 	
 public:
 	
+	enum Timeres
+	{
+		MICROSECONDS,
+		MILLISECONDS,
+		SECONDS
+	};
+
 	Timer()
 	{
 		_start = 0;
@@ -46,22 +53,39 @@ public:
 	
 	void start()
 	{
-		_start = mach_absolute_time();
 		_end = 0;
+		_start = mach_absolute_time();
 	}
 	
 	void stop()
 	{
 		_end = mach_absolute_time();
 	}
-	
-	//in milliseconds
-	long int elapsed()
+
+	void reset()
 	{
-		if (_end == 0) _end = mach_absolute_time();
-		return (_end - _start) * 1e-6;
+		_start = 0;
+		_end = 0;
 	}
 	
+	//in seconds
+	long int elapsed(int t)
+	{
+		//sanity check, more imprecise
+		if (_end == 0) _end = mach_absolute_time();
+		
+		switch(t){
+			case MICROSECONDS : return (_end - _start) * 1e-3;
+								break;
+			case MILLISECONDS : return (_end - _start) * 1e-6;
+								break;
+			case SECONDS : 	    return (_end - _start) * 1e-9;
+								break;
+			default : 			return (_end - _start) * 1e-6;
+								break;
+		}
+	}
+
 	//in milliseconds
 	long int elapsedAndReset()
 	{
