@@ -28,8 +28,8 @@ class Vec2{
 
 	Vec2(){T* data = (T*)_mm_malloc(2*sizeof(T), 64);}
 
-	T x(){return data[0];};
-	T y(){return data[1];};
+	T& x(){return data[0];};
+	T& y(){return data[1];};
 
 	private:
 
@@ -43,9 +43,9 @@ class Vec3{
 
 	Vec3(){T* data = (T*)_mm_malloc(3*sizeof(T), 64);}
 
-	T x(){return data[0];};
-	T y(){return data[1];};
-	T z(){return data[2];};
+	T& x(){return data[0];};
+	T& y(){return data[1];};
+	T& z(){return data[2];};
 
 	private:
 
@@ -59,10 +59,10 @@ class Vec4{
 
 	Vec4(){T* data = (T*)_mm_malloc(4*sizeof(T), 64);}
 
-	T w(){return data[0];};
-	T x(){return data[1];};
-	T y(){return data[2];};
-	T z(){return data[3];};
+	T& w(){return data[0];};
+	T& x(){return data[1];};
+	T& y(){return data[2];};
+	T& z(){return data[3];};
 		
 
 	private:

@@ -88,7 +88,6 @@ namespace ccpp{
 		static void read(Tn<T> tn){
 
 			//TODO buffer input with chunks
-			//TODO filename check and append if - .cbm
 			//TODO better exception handling than asserts
 			//	   to tell the user what is wrong
 			//TODO add file descriptor to Tn struct (only
@@ -102,8 +101,14 @@ namespace ccpp{
 			FILE* file = fopen(tn.filename.c_str(), "r");
 			//discard first entry
 			int64_t disc;
-			fread(&disc,sizeof(int64_t),1,file);
-			fread(tn.data, sizeof(T), tn.n, file);
+			int r1 =fread(&disc,sizeof(int64_t),1,file);
+			int r2 =fread(tn.data, sizeof(T), tn.n, file);
+
+			if(!r1 || !r2){
+
+				perror("READING F A I L E D");
+			}
+
 			fclose(file);
 
 		}
@@ -112,7 +117,6 @@ namespace ccpp{
 		static void write(std::string filename, T* data, unsigned int N){
 
 			//TODO buffer output with chunks
-			//TODO filename check and append if - .cbm
 
 			//first 64 bits
 			int64_t first;
@@ -145,6 +149,9 @@ namespace ccpp{
 		static std::string getProperFilename(std::string filename){
 
 			std::string ext(".cbm");
+
+			if(!((filename.substr(filename.size() - 4)).compare(ext)))
+				filename.append(ext);
 
 			return filename.append(ext);
 		}
