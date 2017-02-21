@@ -38,6 +38,13 @@ class Soa{
 
 		}
 
+		Soa(T* data, unsigned int n){
+
+			_data = data;
+			_n = n;
+
+		}
+
 		void vadd(Soa<T>* sa, Soa<T>* sc){
 
 			auto a = sa->data();

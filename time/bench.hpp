@@ -104,6 +104,12 @@ class BENCH
 		#endif
 	}
 
+	static long int inline gettime(const int i){
+		#ifdef CCPP_BENCH
+			return _times[i];
+		#endif
+	} 
+
 	static void inline summarize(){
 		#ifdef CCPP_BENCH
 			double totale(0);

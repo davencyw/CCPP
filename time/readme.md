@@ -38,7 +38,7 @@ int main(){
     BENCH::reg("taskA");            //id = 0;
     BENCH::reg("taskB");            //id = 1;
     //child task of task B  
-    BENCH::regchild("subtaskB", 1);  //id = 2;
+    BENCH::regchild("subtaskB", 1); //id = 2;
 
     //start compuation
 
@@ -62,7 +62,7 @@ int main(){
     //to get the benchmarking results either
     BENCH::summarize();
     //or
-    BENCH::summarytocsv("yourfile");
+    BENCH::summarytocsv("yourfile.txt");
 
 }
 ```

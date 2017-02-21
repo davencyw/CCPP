@@ -13,6 +13,9 @@
  *
  */
 
+#ifndef __CCPP_VEC__
+#define __CCPP_VEC__
+
 #if defined(__INTEL_COMPILER)
 #include <malloc.h>
 #else
@@ -84,3 +87,6 @@ typedef Vec3<double> Vec3d;
 typedef Vec4<int> Vec4i;
 typedef Vec4<float> Vec4f;
 typedef Vec4<double> Vec4d;
+
+//end vec.hpp
+#endif
