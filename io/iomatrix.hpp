@@ -56,7 +56,7 @@ namespace ccpp{
 			//first 64 bits
 			int64_t first;
 
-			//TODO check read
+			filename.append(".cbm");
 			FILE* file = fopen(filename.c_str(), "r");
 
 			fread(&first, sizeof(int64_t), 1, file);
@@ -75,7 +75,9 @@ namespace ccpp{
 
 			fread(data, sizeof(T), n, file);
 
+			fclose(file);
 
+			return data;
 
 		}
 
@@ -88,7 +90,7 @@ namespace ccpp{
 			int64_t first;
 
 			//data type
-			int64_t  t(typehelper<T>::value);
+			int64_t t(typehelper<T>::value);
 			//number of data
 			int64_t n(N);
 
@@ -101,10 +103,12 @@ namespace ccpp{
 
 			filename.append(".cbm");
 
-			FILE* file = fopen(filename.c_str(), "wb");
+			FILE* file = fopen(filename.c_str(), "w");
 
 			fwrite(&first, sizeof(int64_t), 1, file);
 			fwrite(data, sizeof(T), n, file);
+
+			fclose(file);
 
 		}
 
