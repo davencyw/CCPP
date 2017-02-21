@@ -28,6 +28,13 @@
 *.out
 *.app
 
+#test files
+test*
+
+#binary files
+*.bin
+*.cbm
+
 #Folders
 /bin
 /build
