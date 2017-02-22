@@ -39,6 +39,9 @@
 // 	|		//max 16tb files
  		//next N * sizeof(T) bytes contain data
 
+
+//TODO move to cpp
+
 namespace ccpp{
 
 	//metadata about binary representation
@@ -72,6 +75,20 @@ namespace ccpp{
 			read(tn);
 
 			return tn.data;
+
+		}
+
+		static unsigned int read(std::string filename, T* data){
+
+
+			Tn<T> tn = getTnFromFile(filename);
+
+			//allocate memory
+			tn.data = (T*)_mm_malloc(tn.n*sizeof(T), 64);
+			read(tn);
+			data = tn.data;
+
+			return tn.n;
 
 		}
 
@@ -133,7 +150,7 @@ namespace ccpp{
 
 			first = (n << 2) | t;
 
-			filename.append(".cbm");
+			filename = getProperFilename(filename);
 
 			FILE* file = fopen(filename.c_str(), "w");
 
@@ -150,10 +167,10 @@ namespace ccpp{
 
 			std::string ext(".cbm");
 
-			if(!((filename.substr(filename.size() - 4)).compare(ext)))
+			if(((filename.substr(filename.size() - 4)).compare(ext)))
 				filename.append(ext);
 
-			return filename.append(ext);
+			return filename;	
 		}
 
 		static Tn<T> getTnFromFile(std::string filename){
@@ -172,8 +189,6 @@ namespace ccpp{
 			tn.t = (f & 0b11);
 			//number of data
 			tn.n = (f >> 2);
-
-			std::cout<<tn.n<<"N"<<std::endl;
 
 			return tn;
 		}
