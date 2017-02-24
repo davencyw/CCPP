@@ -22,6 +22,7 @@
 #include <mm_malloc.h>
 #endif
 
+namespace CCPP{
 
 template <class T>
 class Vec2{
@@ -87,6 +88,8 @@ typedef Vec3<double> Vec3d;
 typedef Vec4<int> Vec4i;
 typedef Vec4<float> Vec4f;
 typedef Vec4<double> Vec4d;
+
+}//CCPP
 
 //end vec.hpp
 #endif

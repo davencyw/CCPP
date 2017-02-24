@@ -15,10 +15,11 @@
  *
  */
 
-#ifndef __BENCH__
-#define __BENCH__
+#ifndef __CCPP_BENCH__
+#define __CCPP_BENCH__
 
 #include <iostream>
+#include <iomanip>
 #include <cmath>
 #include <vector>
 #include <string>
@@ -26,8 +27,7 @@
 #include <fstream>
 
 #include "timer.hpp"
-
-using namespace std;
+#include "../tree/stree.hpp"
 
 
 class BENCH
@@ -43,31 +43,33 @@ class BENCH
 		};
 	#endif
 
-	static void inline settitle(string title){
+	static void inline settitle(std::string title){
 		#ifdef CCPP_BENCH
 			_title = title;
 		#endif
 	}
 
 	static void inline setresolution(Timeres res){
-		_res = res;
+		#ifdef CCPP_BENCH
+			_res = res;
 
-		//get time resolution unit to string
-		switch(_res){
+			//get time resolution unit to string
+			switch(_res){
 
-			case MICROSECONDS : _resname = "μs";
-				break;
-			case MILLISECONDS : _resname = "ms";
-				break;
-			case SECONDS 	 : _resname = "s";
-				break;
-			default      : _resname = "TIMEERROR";
-				break;
-		}
+				case MICROSECONDS 	: _resname = "μs";
+					break;
+				case MILLISECONDS 	: _resname = "ms";
+					break;
+				case SECONDS		: _resname = "s";
+					break;
+				default				: _resname = "TIMEERROR";
+					break;
+			}
+		#endif
 
 	}
 
-	static void inline reg(string name){
+	static void inline reg(std::string name){
 		#ifdef CCPP_BENCH
 			transform(name.begin(), name.end(),name.begin(), ::toupper);
 			_names.emplace_back(name);
@@ -75,17 +77,28 @@ class BENCH
 			_times.emplace_back(0);
 			++_n;
 			_father.push_back(-1); //no father
+			_top.push_back(_n);
+			_children.emplace_back(std::vector<int>());
+
 		#endif
 	}
 
-	static void inline regchild(string name, int father){
+	static void inline regchild(std::string name, int father){
 		#ifdef CCPP_BENCH
+
+			//TODO eror handling if father > _n
+			//TODO check cyclic relations (not allowed)
+
 			transform(name.begin(), name.end(),name.begin(), ::toupper);
 			_names.emplace_back(name);
 			_timers.emplace_back(Timer());
 			_times.emplace_back(0);
 			++_n;
 			_father.push_back(father);
+			_children[father].push_back(_n);
+			_children.emplace_back(std::vector<int>());
+
+
 		#endif
 	}
 
@@ -111,57 +124,101 @@ class BENCH
 	} 
 
 	static void inline summarize(){
+
 		#ifdef CCPP_BENCH
-			double totale(0);
 
-			//TODO sort output according to relations!
-			//TODO maybe colored?
+		if(_top.size()==0){
 
-			//get total times of all father sections
-			for (int i = 0; i < _n; ++i)
-			{	
-				if(_father[i] == -1)
-					totale += _times[i];
-			}
-
+			//print BENCH error message - no top level section found
 			if(!_title.empty())
 				_title.append("\n");
 
+			std::cout<<"\n\n\n_________________\n\n"
+				<<"P R O F I L I N G\n"
+				<<_title
+				<<"_________________\n\n\n"
+				<<"E R R O R\n"
+				<<"no sections registered";
+				return;
+		}
 
-			cout<<"P R O F I L I N G\n"
+		if(!_title.empty())
+				_title.append("\n");
+
+			std::cout<<"\n\n\n_________________\n\n"
+				<<"P R O F I L I N G\n"
 				<<_title
 				<<"_________________\n\n\n";
 
-			for (int i = 0; i <= _n; ++i)
-			{	
-				bool hasfather(_father[i]!=-1);
-				double t(0);
-				if(totale)
-					t = (100.0 * _times[i] / totale);
-
-				if(!hasfather){
-					cout<< _names[i] << endl
-						<< "runtime " << _resname << "\t\t" << _times[i] << endl
-						<< "percentage of runtime \t" << t << "%" << endl << endl;
-				}
-				else{
-					int father = _father[i];
-					double t(0);
-					if(_times[father])
-						t = ((double)_times[i]/_times[father])*100.0;
-
-					cout<<"╚═════  "
-						<< _names[i] << endl
-						<< "\truntime " << _resname << "\t\t" << _times[i] << endl
-						<< "\tpercentage of runtime \t" << t << "%"<< endl << endl;
-
-				}
+			for (int i = 0; i < _top.size(); ++i)
+			{
+				//get id of top section
+				int s(_top[i]);
+				summarizechild(s,0);
 			}
+
 		#endif
 	}
 
+	static void inline summarizechild(int s, int l){
 
-	static void summarytocsv(string filename){
+		#ifdef CCPP_BENCH
+
+		//TODO make loops c++11/14 style
+		//TODO make colored
+
+		//box drawing chars
+		std::string bstart("╚");
+		std::string bcont("════════");
+		std::string bfin("");
+		std::string bspacing("");
+
+		//get total time for top level sections
+		long int totale(0);
+		if(l==0){
+			for (int i = 0; i < _top.size(); ++i)
+				totale+=_times[_top[i]];
+		}else{
+			totale = _times[_father[s]];
+		}
+
+		//print title and time
+		if(l!=0){
+			bfin = bstart + "═════";
+			bspacing.append("\t");	
+
+			for (int i = 1; i < l; ++i)
+			{
+				bspacing.append("\t");
+				bfin.append(bcont);
+			}
+
+			bfin.append("  ");
+		}
+
+
+		double p(0);
+		if(totale!=0)
+			p = ((double)_times[s]/(double)totale)*100.0;
+
+		std::cout<<bfin
+			<< _names[s] << std::endl
+			<< bspacing <<"runtime " << _resname << "\t\t" << _times[s] << std::endl
+			<< bspacing <<"percentage of runtime \t" << p << "%"<< std::endl << std::endl;
+
+			for (int i = 0; i < _children[s].size(); ++i)
+					{
+
+						int ss((_children[s])[i]);
+						summarizechild(ss,l+1);
+					}
+
+		#endif
+
+	}
+
+
+	static void summarytocsv(std::string filename){
 		#ifdef CCPP_BENCH
 
 			if(_title.empty())
@@ -170,22 +227,22 @@ class BENCH
 				_info = "NO INFO";
 
 			//open file
-			ofstream fileout;
+			std::ofstream fileout;
 			fileout.open(filename);
 
 			//write summary
-			fileout << _title << endl
-					<< _info << endl
-					<< "resolution: " << _resname << endl;
+			fileout << _title << std::endl
+					<< _info << std::endl
+					<< "resolution: " << _resname << std::endl;
 
 			//write csv description
-			fileout << "id;name;time[" << _resname << "];fatherid"<<endl;
+			fileout << "id;name;time[" << _resname << "];fatherid"<<std::endl;
 
 			//write data
 			for (int i = 0; i <= _n; ++i)
 			{
 				fileout << i << ";" << _names[i] << ";"
-						<< _times[i] << ";" << _father[i] << endl;
+						<< _times[i] << ";" << _father[i] << std::endl;
 			}
 
 			
@@ -201,24 +258,27 @@ class BENCH
 	#ifdef CCPP_BENCH
 
 		//bench title - optional
-		static string _title;
+		static std::string _title;
 
 		//info of program for summary - optional
-		static string _info;
+		static std::string _info;
 
 		//number of profiled sections
 		static int _n;
 		//name of profiled section
-		static vector<string> _names;
+		static std::vector<std::string> _names;
 		//relations pair(father, child)
-		static vector<int> _father;
+		static std::vector<int> _father;
+		static std::vector<int> _top;
+		static std::vector<std::vector<int>> _children;
 		//time of profiled section [ms]
-		static vector<long int> _times;
+		static std::vector<long int> _times;
 		//timer for every section
-		static vector<Timer> _timers;
+		static std::vector<Timer> _timers;
 		//resolution of timer
 		static int _res;
-		static string _resname;
+		static std::string _resname;
+
 	#endif
 };
 

@@ -20,13 +20,21 @@
 #ifndef __CCPP_IOMATRIX__
 #define __CCPP_IOMATRIX__
 
-#include <string>
-#include <iostream>
 #include <stdio.h>
+
+#include <iostream>
+#include <string>
 #include <algorithm>
 #include <cassert>
 
 #include "typetraits.hpp"
+
+#if defined(__INTEL_COMPILER)
+#include <malloc.h>
+#else
+#include <mm_malloc.h>
+#endif
+
 
  //representation:
 
@@ -75,20 +83,6 @@ namespace ccpp{
 			read(tn);
 
 			return tn.data;
-
-		}
-
-		static unsigned int read(std::string filename, T* data){
-
-
-			Tn<T> tn = getTnFromFile(filename);
-
-			//allocate memory
-			tn.data = (T*)_mm_malloc(tn.n*sizeof(T), 64);
-			read(tn);
-			data = tn.data;
-
-			return tn.n;
 
 		}
 

@@ -2,24 +2,24 @@
 
 #ifdef CCPP_BENCH
 
-using namespace std;
-
 	//bench title - optional
-	string BENCH::_title = "";
-	string BENCH::_info = "";
+	std::string BENCH::_title = "";
+	std::string BENCH::_info = "";
 
 	//number of profiled sections
 	int BENCH::_n = -1;
 	//name of profiled section
-	vector<string> BENCH::_names;
+	std::vector<std::string> BENCH::_names;
 	//realtions
-	vector<int> BENCH::_father;
+	std::vector<int> BENCH::_father;
+	std::vector<int> BENCH::_top;
+	std::vector<std::vector<int>> BENCH::_children;
 	//time of profiled section [ms]
-	vector<long int> BENCH::_times;
+	std::vector<long int> BENCH::_times;
 	//timer for every section
-	vector<Timer> BENCH::_timers;
+	std::vector<Timer> BENCH::_timers;
 	//resolution of timer - milliseconds default
 	int BENCH::_res = BENCH::MILLISECONDS;
-	string BENCH::_resname = "ms";
+	std::string BENCH::_resname = "ms";
 
 #endif

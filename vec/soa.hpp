@@ -26,6 +26,7 @@
 
 #include <immintrin.h>
 
+namespace CCPP{
 
 template <class T>
 class Soa{
@@ -123,6 +124,8 @@ class Soa{
 
 
 }; 
+
+}//CCPP
 
 //end soa.hpp
 #endif 
