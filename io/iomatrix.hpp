@@ -24,6 +24,7 @@
 
 #include <algorithm>
 #include <cassert>
+#include <cmath>
 #include <iostream>
 #include <string>
 
@@ -37,19 +38,19 @@
 
 // representation:
 
-//	|	//first two bits indicates data type [T]
-// 	|		//00 - double
-// 	TN	    //01 - float
-// 	|		//10 - int
-// 	|		//11 - unsigned int
-// 	|	//next 62 bits represents an unsigned integer [N] containing the
+//  | //first two bits indicates data type [T]
+//  |   //00 - double
+//  TN      //01 - float
+//  |   //10 - int
+//  |   //11 - unsigned int
+//  | //next 62 bits represents an unsigned integer [N] containing the
 // number of following data
-// 	|		//max 16tb files
+//  |   //max 16tb files
 // next N * sizeof(T) bytes contain data
 
 // TODO move to cpp
 
-namespace ccpp {
+namespace CCPP {
 
 // metadata about binary representation
 template <class T>
@@ -90,7 +91,7 @@ class MatrixIO {
   static void read(Tn<T> tn) {
     // TODO buffer input with chunks
     // TODO better exception handling than asserts
-    //	   to tell the user what is wrong
+    //     to tell the user what is wrong
     // TODO add file descriptor to Tn struct (only
     //     opening the file once..)
 
@@ -174,7 +175,8 @@ typedef MatrixIO<double> MatIOd;
 typedef MatrixIO<float> MatIOf;
 typedef MatrixIO<int> MatIOi;
 typedef MatrixIO<unsigned int> MatIOu;
-}
+
+}  // CCPP
 
 // end iomatrix.hpp
 #endif

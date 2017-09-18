@@ -28,6 +28,8 @@
 
 #include "timer.hpp"
 
+namespace CCPP {
+
 class BENCH {
  public:
 #ifdef CCPP_BENCH
@@ -250,6 +252,8 @@ class BENCH {
 
 #endif
 };
+
+}  // CCPP
 
 // bench.hpp
 #endif 
