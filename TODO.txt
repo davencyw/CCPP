@@ -1,0 +1,4 @@
+TODO(dave):
+ - consistent namespace "CCPP"!
+ - consistent HEADERGUARDS!
+ - DOCUMENTATION

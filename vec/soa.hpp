@@ -1,5 +1,20 @@
 /*
  *
+ *  DESCRIPTION
+ *  ___________________________________________________________
+ *
+ *  Part of:
+ *  Common CPP Library 
+ *  Common c++ library for everyday use. Always in development.
+ *
+ *  author: david schmidig [david@davencyw.net] 
+ *          DAVENCYW CODE [davencyw.net]
+ *          Msc CSE ETH Zurich
+ *
+ *
+ */
+/*
+ *
  * SOA class for DLP friendly use. 
  * Uses intel SIMD intrinsics for SOA and SOA - SOA operations.
  *  ___________________________________________________________

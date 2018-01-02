@@ -1,5 +1,20 @@
 /*
  *
+ *  DESCRIPTION
+ *  ___________________________________________________________
+ *
+ *  Part of:
+ *  Common CPP Library 
+ *  Common c++ library for everyday use. Always in development.
+ *
+ *  author: david schmidig [david@davencyw.net] 
+ *          DAVENCYW CODE [davencyw.net]
+ *          Msc CSE ETH Zurich
+ *
+ *
+ */
+/*
+ *
  *	CCPP_BENCHmark class for easy CCPP_BENCHmarking and profiling
  *  cpp codes.
  *  ___________________________________________________________

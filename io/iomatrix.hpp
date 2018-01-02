@@ -1,5 +1,20 @@
 /*
  *
+ *  DESCRIPTION
+ *  ___________________________________________________________
+ *
+ *  Part of:
+ *  Common CPP Library 
+ *  Common c++ library for everyday use. Always in development.
+ *
+ *  author: david schmidig [david@davencyw.net] 
+ *          DAVENCYW CODE [davencyw.net]
+ *          Msc CSE ETH Zurich
+ *
+ *
+ */
+/*
+ *
  *  Simple and small matrix writer and reader for efficient 
  *  store and load of large matrices in binary. Only supports
  *  double, float, int and unsigned int as data type.
