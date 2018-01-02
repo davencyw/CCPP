@@ -1,3 +1,18 @@
+/*
+ *
+ *  DESCRIPTION
+ *  ___________________________________________________________
+ *
+ *  Part of:
+ *  Common CPP Library 
+ *  Common c++ library for everyday use. Always in development.
+ *
+ *  author: david schmidig [david@davencyw.net] 
+ *          DAVENCYW CODE [davencyw.net]
+ *          Msc CSE ETH Zurich
+ *
+ *
+ */
 
 #ifndef __CCPP_BENCH__
 #define __CCPP_BENCH__
