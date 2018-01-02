@@ -1,4 +1,4 @@
-/*
+/*__DECLARATION__
  *
  *  DESCRIPTION
  *  ___________________________________________________________
@@ -13,6 +13,7 @@
  *
  *
  */
+
 #ifndef __CCPP_TIMER__
 #define __CCPP_TIMER__
 

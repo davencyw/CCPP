@@ -1,4 +1,4 @@
-/*
+/*__DECLARATION__
  *
  *  DESCRIPTION
  *  ___________________________________________________________
@@ -8,37 +8,6 @@
  *  Common c++ library for everyday use. Always in development.
  *
  *  author: david schmidig [david@davencyw.net] 
- *          DAVENCYW CODE [davencyw.net]
- *          Msc CSE ETH Zurich
- *
- *
- */
-/*
- *
- *  DESCRIPTION
- *  ___________________________________________________________
- *
- *  Part of:
- *  Common CPP Library 
- *  Common c++ library for everyday use. Always in development.
- *
- *  author: david schmidig [david@davencyw.net] 
- *          DAVENCYW CODE [davencyw.net]
- *          Msc CSE ETH Zurich
- *
- *
- */
-/*
- *
- *  Type traits converting type to 2 bit number for double(00),
- *  float(01), int(10) and unsigned int(11)
- *  ___________________________________________________________
- *
- *  Part of:
- *  Common CPP Library
- *  Common c++ library for everyday use. Always in development.
- *
- *  author: david schmidig [david@davencyw.net]
  *          DAVENCYW CODE [davencyw.net]
  *          Msc CSE ETH Zurich
  *

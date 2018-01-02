@@ -1,4 +1,4 @@
-/*
+/*__DECLARATION__
  *
  *  DESCRIPTION
  *  ___________________________________________________________
@@ -9,35 +9,6 @@
  *
  *  author: david schmidig [david@davencyw.net] 
  *          DAVENCYW CODE [davencyw.net]
- *          Msc CSE ETH Zurich
- *
- *
- */
-/*
- *
- *  DESCRIPTION
- *  ___________________________________________________________
- *
- *  Part of:
- *  Common CPP Library 
- *  Common c++ library for everyday use. Always in development.
- *
- *  author: david schmidig [david@davencyw.net] 
- *          DAVENCYW CODE [davencyw.net]
- *          Msc CSE ETH Zurich
- *
- *
- */
- /*
- *
- *	DLP friendly vector class for aligned memory and SOA memory layouts
- *  ___________________________________________________________
- *
- *  Part of:
- *  Common CPP Library 
- *  Common c++ library for everyday use. Always in development.
- *
- *  author: david schmidig [david@davencyw.net]
  *          Msc CSE ETH Zurich
  *
  *
