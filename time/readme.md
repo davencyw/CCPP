@@ -38,7 +38,7 @@ int main(){
     BENCH::reg("taskA");            //id = 0;
     BENCH::reg("taskB");            //id = 1;
     //child task of task B  
-    BENCH::regchild("subtaskB", 1); //id = 2;
+    BENCH::regchild("subtaskB", B_TASKB); //id = 2;
 
     //start compuation
 
