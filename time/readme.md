@@ -1,4 +1,4 @@
-##DESCRIPTION
+## DESCRIPTION
 The __BENCH__ benchmarking class is designed to be a simple and clean but precise benchmarking tool for c++ applications. It relies on preprocessor macros to remove all benchmarking code for non benchmark runs such that all BENCH functions have no effect and can be optimized away with `-O3` if not used, such that you do not have to mess around with `#ifdef` macros in your own code. It is written as a static class, such that you can access it from everywhere in your project. The only thing you have to include then is your own `Benchdec.hpp` which specifies the sections you want to benchmark (see usage). You have to include `Benchdec.hpp` in every file, where you want to benchmark your code! __BENCH__ uses `timer.hpp` from __CCPP__ implementation as timer.
 
 The Resolutions are:
@@ -8,8 +8,8 @@ BENCH::MIILLISECONDS
 BENCH::SECONDS
 ```
 
-##USAGE
-###Benchdec.hpp
+## USAGE
+### Benchdec.hpp
 ```c++
  #include <CCPP/time/bench.hpp>
 
@@ -21,7 +21,7 @@ BENCH::SECONDS
     B_SUBTASKB
 };
 ```
-###Main.cpp
+### Main.cpp
 ```c++
 ...
 #include "Benchdec.hpp"
